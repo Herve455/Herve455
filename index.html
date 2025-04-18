@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetScale Pro</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>BetScale Pro</h1>
+        </div>
+        
+        <div class="content-container">
+            <!-- Jeux Section -->
+            <section id="jeu-section" class="content-section active">
+                <h2>Jouer Maintenant</h2>
+                <div class="games-grid">
+                    <!-- Expert FIFA Game Card -->
+                    <div class="game-card">
+                        <div class="game-icon">⚽</div>
+                        <h3>Expert FIFA</h3>
+                        <p>Obtenez les meilleures prédictions pour vos paris sur FIFA avec notre système d'IA avancé. Maximisez vos gains!</p>
+                        <button class="discover-button" data-game="fifa">Découvrir</button>
+                    </div>
+                    
+                    <!-- Baccarat Game Card -->
+                    <div class="game-card">
+                        <div class="game-icon">🎴</div>
+                        <h3>Baccarat</h3>
+                        <p>Stratégies et prédictions pour le Baccarat. Notre système analyse les tendances pour des résultats optimaux.</p>
+                        <button class="start-button" data-game="baccarat">Commencer</button>
+                    </div>
+                </div>
+                
+                <!-- FIFA Sub-Games (Hidden by default) -->
+                <div id="fifa-games" class="sub-games-container">
+                    <h3>Choisissez votre championnat</h3>
+                    <div class="sub-games-grid">
+                        <div class="sub-game-card">
+                            <div class="sub-game-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                            <h4>FC24 4x4 - Angleterre</h4>
+                            <p>Prédictions pour les matchs 4x4 du championnat anglais.</p>
+                            <button class="select-game-button" data-game="fifa-england">Sélectionner</button>
+                        </div>
+                        <div class="sub-game-card">
+                            <div class="sub-game-icon">🌍</div>
+                            <h4>FC24 3x3 - Master League</h4>
+                            <p>Prédictions pour les matchs 3x3 de la Master League internationale.</p>
+                            <button class="select-game-button" data-game="fifa-master">Sélectionner</button>
+                        </div>
+                    </div>
+                    <button id="fifa-next-button" class="next-button disabled">Suivant</button>
+                    <button class="back-button">Retour</button>
+                </div>
+                
+                <!-- Baccarat Bookmaker Selection (Hidden by default) -->
+                <div id="baccarat-bookmakers" class="sub-games-container">
+                    <h3>Choisissez votre bookmaker</h3>
+                    <div class="bookmakers-grid">
+                        <div class="bookmaker-card">
+                            <div class="bookmaker-logo">MELBET</div>
+                            <p>Leader mondial des paris sportifs avec des cotes imbattables.</p>
+                            <div class="promo-code">Code Promo: <span>ALVE13</span></div>
+                            <button class="select-bookmaker-button" data-bookmaker="melbet">Sélectionner</button>
+                        </div>
+                        <div class="bookmaker-card">
+                            <div class="bookmaker-logo">888STARZ</div>
+                            <p>Une large gamme de marchés avec des bonus exclusifs.</p>
+                            <div class="promo-code">Code Promo: <span>VEROL3</span></div>
+                            <button class="select-bookmaker-button" data-bookmaker="888starz">Sélectionner</button>
+                        </div>
+                        <div class="bookmaker-card">
+                            <div class="bookmaker-logo">MEGAPARI</div>
+                            <p>Options de paris avancées et interface conviviale.</p>
+                            <div class="promo-code">Code Promo: <span>ALVE10</span></div>
+                            <button class="select-bookmaker-button" data-bookmaker="megapari">Sélectionner</button>
+                        </div>
+                    </div>
+                    <div class="bookmaker-actions">
+                        <button class="create-account-button">Créer un compte</button>
+                        <button class="back-button">Retour</button>
+                    </div>
+                </div>
+                
+                <!-- Game Interface (Hidden by default) -->
+                <div id="game-interface" class="game-interface-container">
+                    <h3 id="game-title">Titre du jeu</h3>
+                    <div id="game-content" class="game-content">
+                        <!-- Dynamic game content will be loaded here -->
+                    </div>
+                    <button class="back-to-games-button">Retour aux jeux</button>
+                </div>
+            </section>
+            
+            <!-- VIP Section -->
+            <section id="vip-section" class="content-section">
+                <h2>Jeux Premium</h2>
+                <div class="vip-banner">
+                    <div class="vip-badge">👑 PREMIUM</div>
+                    <p>Accédez à nos prédictions les plus avancées et exclusives</p>
+                </div>
+                
+                <div class="games-grid vip-games">
+                    <!-- Apple of Fortune Game Card -->
+                    <div class="game-card premium-card">
+                        <div class="premium-marker">premium</div>
+                        <div class="game-icon">🍎</div>
+                        <h3>Apple of Fortune</h3>
+                        <p>Découvrez notre IA avancée qui prédit la bonne pomme parmi 5 cases grâce à des algorithmes d'analyse prédictive.</p>
+                        <button class="start-button premium-button" data-game="apple">Commencer</button>
+                    </div>
+                    
+                    <!-- God Mode Game Card -->
+                    <div class="game-card premium-card">
+                        <div class="premium-marker">premium</div>
+                        <div class="game-icon">⚡</div>
+                        <h3>God Mode</h3>
+                        <p>Les prédictions les plus poussées sur le football avec une précision exceptionnelle grâce à notre base de données avancée.</p>
+                        <button class="start-button premium-button" data-game="godmode">Commencer</button>
+                    </div>
+                    
+                    <!-- Sega Football Game Card -->
+                    <div class="game-card premium-card">
+                        <div class="premium-marker">premium</div>
+                        <div class="game-icon">🏆</div>
+                        <h3>Sega Football</h3>
+                        <p>Prédictions simplifiées pour les matchs de football virtuels à faible nombre de buts, idéal pour maximiser vos chances.</p>
+                        <button class="start-button premium-button" data-game="sega">Commencer</button>
+                    </div>
+                </div>
+                
+                <!-- Apple of Fortune Selection (Hidden by default) -->
+                <div id="apple-settings" class="sub-games-container">
+                    <h3>Configuration - Apple of Fortune</h3>
+                    <div class="apple-config">
+                        <div class="config-item">
+                            <label for="apple-time">Heure locale</label>
+                            <input type="time" id="apple-time" value="12:00">
+                        </div>
+                        <div class="config-item">
+                            <label>Choisissez votre bookmaker</label>
+                            <div class="bookmakers-select">
+                                <div class="bookmaker-option">
+                                    <input type="radio" id="apple-melbet" name="apple-bookmaker" value="melbet">
+                                    <label for="apple-melbet">MELBET</label>
+                                </div>
+                                <div class="bookmaker-option">
+                                    <input type="radio" id="apple-888starz" name="apple-bookmaker" value="888starz">
+                                    <label for="apple-888starz">888STARZ</label>
+                                </div>
+                                <div class="bookmaker-option">
+                                    <input type="radio" id="apple-megapari" name="apple-bookmaker" value="megapari">
+                                    <label for="apple-megapari">MEGAPARI</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-actions">
+                        <button id="start-apple-prediction" class="premium-button">Obtenir la prédiction</button>
+                        <button class="create-account-button">Créer un compte</button>
+                        <button class="back-button">Retour</button>
+                    </div>
+                </div>
+                
+                <!-- God Mode Selection (Hidden by default) -->
+                <div id="godmode-settings" class="sub-games-container">
+                    <h3>Configuration - God Mode</h3>
+                    <p class="premium-desc">Notre système d'IA le plus avancé pour les prédictions de football</p>
+                    <div class="config-actions">
+                        <button id="start-godmode-prediction" class="premium-button">Obtenir la prédiction</button>
+                        <button class="back-button">Retour</button>
+                    </div>
+                </div>
+                
+                <!-- Sega Football Selection (Hidden by default) -->
+                <div id="sega-settings" class="sub-games-container">
+                    <h3>Configuration - Sega Football</h3>
+                    <p class="premium-desc">Prédictions optimisées pour les matchs virtuels à faible nombre de buts</p>
+                    <div class="config-actions">
+                        <button id="start-sega-prediction" class="premium-button">Obtenir la prédiction</button>
+                        <button class="back-button">Retour</button>
+                    </div>
+                </div>
+                
+                <!-- Premium Game Interface (Hidden by default) -->
+                <div id="premium-game-interface" class="game-interface-container premium-interface">
+                    <h3 id="premium-game-title">Titre du jeu</h3>
+                    <div id="premium-game-content" class="game-content">
+                        <!-- Dynamic game content will be loaded here -->
+                    </div>
+                    <div class="premium-controls">
+                        <button id="premium-next-button" class="premium-button">Suivant</button>
+                        <button id="premium-new-prediction-button" class="premium-button">Nouvelle prédiction</button>
+                        <button id="premium-home-button" class="premium-button">Accueil</button>
+                    </div>
+                </div>
+                
+                <div class="vip-upgrade-container">
+                    <div class="vip-card">
+                        <div class="vip-icon">👑</div>
+                        <h3>Plan Premium</h3>
+                        <ul>
+                            <li>Accès à tous les jeux premium</li>
+                            <li>Bonus quotidiens x3</li>
+                            <li>Support prioritaire</li>
+                            <li>Événements exclusifs</li>
+                        </ul>
+                        <button class="vip-button">Devenir VIP</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Services Section -->
+            <section id="services-section" class="content-section">
+                <h2>Nos Services</h2>
+                <div class="services-container">
+                    <div class="service-card">
+                        <div class="service-icon">🎲</div>
+                        <h3>Paris Sportifs</h3>
+                        <p>Découvrez nos paris sportifs avec des cotes imbattables et des promotions exclusives.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏆</div>
+                        <h3>Tournois</h3>
+                        <p>Participez à nos tournois quotidiens et hebdomadaires avec des prix incroyables.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💰</div>
+                        <h3>Bonus</h3>
+                        <p>Profitez de nos bonus de bienvenue et de nos récompenses de fidélité.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Profil Section -->
+            <section id="profil-section" class="content-section">
+                <h2>Votre Profil</h2>
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-icon">👤</div>
+                        <div id="profile-name">Chargement...</div>
+                        <div id="profile-status" class="profile-status free">Plan Gratuit</div>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="coins">0</span>
+                                <span class="stat-label">Jetons</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="wins">0</span>
+                                <span class="stat-label">Victoires</span>
+                            </div>
+                        </div>
+                        <button class="upgrade-button">Passer Premium</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-button active" data-section="jeu">
+                <div class="button-content">
+                    <div class="icon">🎮</div>
+                    <span>Jeux</span>
+                </div>
+            </div>
+            <div class="nav-button" data-section="vip">
+                <div class="button-content">
+                    <div class="icon vip-icon">👑</div>
+                    <span>VIP</span>
+                </div>
+            </div>
+            <div class="nav-button" data-section="services">
+                <div class="button-content">
+                    <div class="icon">🛠️</div>
+                    <span>Services</span>
+                </div>
+            </div>
+            <div class="nav-button" data-section="profil">
+                <div class="button-content">
+                    <div class="icon">👤</div>
+                    <span>Profil</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>Bienvenue sur BetScale Pro</h2>
+            <p>Entrez votre nom pour continuer</p>
+            <input type="text" id="username-input" placeholder="Votre nom d'utilisateur">
+            <button id="login-button">Commencer</button>
+        </div>
+    </div>
+    
+    <!-- Bookmaker Registration Modal -->
+    <div id="bookmaker-modal" class="modal">
+        <div class="modal-content">
+            <h2>Créer un compte</h2>
+            <p>Obtenez un bonus de 200% sur votre premier dépôt</p>
+            <div class="bookmaker-links">
+                <div class="bookmaker-link-item">
+                    <h3>MELBET</h3>
+                    <div class="promo-code">Code Promo: <span class="highlight">ALVE13</span></div>
+                    <a href="https://melbet.com" target="_blank" class="bookmaker-link-button">Visiter le site officiel</a>
+                </div>
+                <div class="bookmaker-link-item">
+                    <h3>888STARZ</h3>
+                    <div class="promo-code">Code Promo: <span class="highlight">VEROL3</span></div>
+                    <a href="https://888starz.com" target="_blank" class="bookmaker-link-button">Visiter le site officiel</a>
+                </div>
+                <div class="bookmaker-link-item">
+                    <h3>MEGAPARI</h3>
+                    <div class="promo-code">Code Promo: <span class="highlight">ALVE10</span></div>
+                    <a href="https://megapari.com" target="_blank" class="bookmaker-link-button">Visiter le site officiel</a>
+                </div>
+            </div>
+            <button id="close-bookmaker-modal">Fermer</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
